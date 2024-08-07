@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Movies Application</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_movies">Movies</string>
+    <string name="title_map">Map</string>
+    <string name="title_camera">Camera</string>
+    <string name="an_error_occurred">An error occurred</string>
+    <string name="OK">OK</string>
+    <string name="profile">Profile</string>
+    <string name="movies">Movies</string>
+
+</resources>
