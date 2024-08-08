@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviesapplication.databinding.FragmentCameraBinding
 import com.example.moviesapplication.ui.viewmodel.CameraViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CameraFragment : Fragment() {
 
     private var _binding: FragmentCameraBinding? = null

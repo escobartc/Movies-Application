@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviesapplication.databinding.FragmentDashboardBinding
 import com.example.moviesapplication.ui.viewmodel.DashboardViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null

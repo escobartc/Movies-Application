@@ -8,5 +8,6 @@
     <string name="OK">OK</string>
     <string name="profile">Profile</string>
     <string name="movies">Movies</string>
+    <string name="featured_movies">Featured movies:</string>
 
 </resources>
