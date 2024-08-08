@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -29,10 +30,13 @@ android {
             properties.getProperty("API_KEY") ?: System.getenv("API_KEY") ?: "default_api_key"
         val header: String =
             properties.getProperty("HEADER") ?: System.getenv("HEADER") ?: "default_header"
+        val maps: String =
+            properties.getProperty("MAPS_API_KEY") ?: System.getenv("MAPS_API_KEY") ?: "default_maps_api_key"
 
         // Add the API key to BuildConfig
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
         buildConfigField("String", "HEADER", "\"$header\"")
+        buildConfigField("String", "MAPS_API_KEY", "\"$maps\"")
 
 
     }
@@ -66,6 +70,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
     val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -108,15 +113,17 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     // Firebase
-    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
     implementation("com.google.firebase:firebase-storage-ktx:21.0.0")
 
     // Google Maps
     implementation("com.google.android.gms:play-services-maps:19.0.0")
     implementation("com.google.maps.android:android-maps-utils:2.3.0")
 
+
     implementation("androidx.work:work-runtime:2.9.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    // Android Maps Compose composables for the Maps SDK for Android
+    implementation ("com.google.maps.android:maps-compose:4.4.1")
 
     //Compose
     implementation("androidx.compose.runtime:runtime-livedata:1.6.8")

@@ -45,7 +45,6 @@ import com.example.moviesapplication.ui.viewmodel.HomeViewModel
 @Composable
 fun ProfileScreen(viewModel: HomeViewModel) {
     val actor = viewModel.actor.observeAsState()
-    val movies = actor.value?.results?.first()?.knownFor ?: emptyList()
     val loading = viewModel.loading.observeAsState(initial = false)
 
     Column(
@@ -70,7 +69,7 @@ fun ProfileScreen(viewModel: HomeViewModel) {
                     thickness = 1.dp
                 )
 
-                MovieList(movies = movies)
+                MovieList(movies = actor.knownFor)
             }
         }
     }
