@@ -7,6 +7,7 @@ A movies MVVM application with a single activity and multiple fragments that con
 - Kotlin coroutines were used to handle asynchronous tasks
 - Jetpack Compose was used for some views
 - For the use of the map and location reading Compose Google Map was used
+- TMDB api key and header are stored in a local properties file and added to buildconfig 
 
 ## Screen 1:
 
