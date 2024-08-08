@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.moviesapplication.databinding.FragmentCameraBinding
 import com.example.moviesapplication.ui.viewmodel.CameraViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class CameraFragment : Fragment() {
 
     private var _binding: FragmentCameraBinding? = null
+    private val cameraViewModel: CameraViewModel by viewModels()
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,16 +27,17 @@ class CameraFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val cameraViewModel =
-            ViewModelProvider(this).get(CameraViewModel::class.java)
-
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCamera
-        cameraViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.composeView.apply {
+            // Dispose of the Composition when the view's LifecycleOwner is destroyed
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+            CameraScreen(cameraViewModel)
+            }
         }
+
         return root
     }
 
