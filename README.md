@@ -14,8 +14,7 @@ A movies MVVM application with a single activity and multiple fragments that con
  
 | Profile | 
 |-----------|
-|
-<img src="https://github.com/user-attachments/assets/4b00a2d4-953b-47ab-a1b5-0532c32b6845" width="500" />
+| <img src="https://github.com/user-attachments/assets/4b00a2d4-953b-47ab-a1b5-0532c32b6845" width="500" />
 | 
 
 
