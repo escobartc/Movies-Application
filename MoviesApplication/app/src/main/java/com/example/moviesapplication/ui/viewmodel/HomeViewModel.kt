@@ -7,12 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.moviesapplication.domain.model.movie.MovieResponse
 import com.example.moviesapplication.domain.model.movie.PersonResponse
 import com.example.moviesapplication.domain.repository.MovieRepository
+import com.example.moviesapplication.domain.use_case.GetPopularActorUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: MovieRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val getPopularActorUseCase: GetPopularActorUseCase) :
+    ViewModel() {
 
     private val _actor = MutableLiveData<PersonResponse>()
     val actor: LiveData<PersonResponse> get() = _actor
@@ -24,8 +26,9 @@ class HomeViewModel @Inject constructor(private val repository: MovieRepository)
         viewModelScope.launch {
             _loading.value = true
             try {
-                val response = repository.getPopularActor(apiKey, token)
-                _actor.value = response
+                getPopularActorUseCase.execute(apiKey, token).collect { response ->
+                    _actor.value = response
+                }
             } catch (e: Exception) {
                 // Handle the exception
             } finally {
