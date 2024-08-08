@@ -27,9 +27,13 @@ android {
 
         val apiKey: String =
             properties.getProperty("API_KEY") ?: System.getenv("API_KEY") ?: "default_api_key"
+        val header: String =
+            properties.getProperty("HEADER") ?: System.getenv("HEADER") ?: "default_header"
 
         // Add the API key to BuildConfig
         buildConfigField("String", "API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "HEADER", "\"$header\"")
+
 
     }
 
@@ -53,12 +57,25 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+
 }
 
 dependencies {
+    val composeBom = platform("androidx.compose:compose-bom:2024.06.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
 
-    implementation("androidx.core:core-ktx:1.13.1")
+    // Core Coil library
+    implementation("io.coil-kt:coil:2.7.0")
+
+    // Coil Compose library
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation ("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -98,8 +115,25 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:19.0.0")
     implementation("com.google.maps.android:android-maps-utils:2.3.0")
 
-    implementation ("androidx.work:work-runtime:2.9.0")
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation("androidx.work:work-runtime:2.9.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    //Compose
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.8")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.activity:activity-compose:1.9.0")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
 
 }
 
