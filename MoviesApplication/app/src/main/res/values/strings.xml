@@ -9,5 +9,9 @@
     <string name="profile">Profile</string>
     <string name="movies">Movies</string>
     <string name="featured_movies">Featured movies:</string>
+    <string name="top_movies">Top Rated Movies:</string>
+    <string name="popular_movies">Popular Movies:</string>
+    <string name="recommended_movies">Recommended Movies:</string>
+
 
 </resources>
